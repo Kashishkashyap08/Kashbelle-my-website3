@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Success - Kashbelle</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Poppins',sans-serif; background:#f8f5f1; display:flex; justify-content:center; align-items:center; height:100vh; padding:20px; }
+        
+        .success-box { background:white; padding:40px 30px; border-radius:30px; width:100%; max-width:420px; text-align:center; box-shadow:0 4px 20px rgba(0,0,0,0.06); }
+        
+        .logo { display:flex; justify-content:center; align-items:center; gap:10px; margin-bottom:25px; text-decoration:none; }
+        .logo span { font-size:24px; font-weight:600; color:#c7a27c; }
+        
+        .success-icon { font-size:60px; color:#c7a27c; margin-bottom:15px; animation: scaleUp 0.4s ease-out; }
+        h1 { font-size:26px; color:#222; margin-bottom:10px; font-weight:600; }
+        p { color:#666; font-size:14px; line-height:1.6; margin-bottom:30px; }
+        
+        .order-details { background:#f4f1ed; padding:15px; border-radius:16px; margin-bottom:30px; text-align:left; font-size:13px; }
+        .order-details div { margin-bottom:6px; display:flex; justify-content:between; }
+        .order-details div:last-child { margin-bottom:0; }
+        
+        .btn-group { display:flex; flex-direction:column; gap:12px; }
+        .primary-btn { padding:15px; border:none; border-radius:35px; background:black; color:white; font-size:15px; font-weight:600; cursor:pointer; }
+        .secondary-btn { padding:15px; border:none; border-radius:35px; background:#e7d8c9; color:#222; font-size:15px; font-weight:600; cursor:pointer; }
+        
+        @keyframes scaleUp {
+            0% { transform: scale(0); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="success-box">
+        <a href="index.html" class="logo">
+            <span>Kashbelle</span>
+        </a>
+        
+        <div class="success-icon">🎉</div>
+        <h1>Order Placed!</h1>
+        <p>Aapka order successfully received ho gaya hai. Kashbelle premium collection choose karne ke liye Thank You! ❤️</p>
+        
+        <div class="order-details">
+            <p><strong>Order ID:</strong> #KB<span id="ordId">8492</span></p>
+            <p><strong>Estimated Delivery:</strong> 3-5 Working Days</p>
+            <p><strong>Payment Status:</strong> COD / Paid</p>
+        </div>
+
+        <div class="btn-group">
+            <button class="primary-btn" onclick="goToOrders()">Track Order Status</button>
+            <button class="secondary-btn" onclick="goHome()">Continue Shopping</button>
+        </div>
+    </div>
+
+    <script>
+        // Generate random order id
+        document.getElementById("ordId").innerHTML = Math.floor(100000 + Math.random() * 900000);
+
+        function goToOrders() {
+            window.location.href = "orders.html";
+        }
+        function goHome() {
+            window.location.href = "index.html";
+        }
+    </script>
+</body>
+</html>

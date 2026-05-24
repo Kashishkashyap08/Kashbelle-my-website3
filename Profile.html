@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <title>My Account - Kashbelle</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Poppins',sans-serif; background:#f8f5f1; padding-bottom:90px; }
+        .navbar { position:sticky; top:0; background:white; padding:12px 15px; display:flex; justify-content:space-between; align-items:center; box-shadow:0 2px 10px rgba(0,0,0,0.05); z-index:1000; }
+        .logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
+        .logo img { width:50px; height:50px; border-radius:50%; object-fit:cover; }
+        .logo span { font-size:22px; font-weight:600; color:#c7a27c; }
+        
+        .profile-container { max-width:500px; margin:20px auto; padding:15px; }
+        .profile-header { text-align:center; padding:20px 0; }
+        .avatar { width:100px; height:100px; background:#c7a27c; color:white; font-size:36px; border-radius:50%; display:inline-flex; justify-content:center; align-items:center; margin-bottom:10px; font-weight:600; box-shadow:0 4px 10px rgba(0,0,0,0.1); }
+        
+        .info-box { background:white; padding:20px; border-radius:24px; box-shadow:0 4px 15px rgba(0,0,0,0.05); margin-bottom:20px; }
+        .info-group { margin-bottom:15px; }
+        .info-group:last-child { margin-bottom:0; }
+        .info-group label { font-size:12px; color:#888; font-weight:500; display:block; margin-bottom:4px; }
+        .info-group input { width:100%; padding:12px 15px; border:none; background:#f4f1ed; border-radius:12px; font-family:inherit; font-size:14px; outline:none; }
+        
+        .save-btn { width:100%; padding:15px; border:none; border-radius:35px; background:black; color:white; font-size:15px; font-weight:600; cursor:pointer; }
+        .logout-btn { width:100%; padding:15px; border:1px solid red; border-radius:35px; background:transparent; color:red; font-size:15px; font-weight:600; cursor:pointer; margin-top:12px; }
+        
+        .bottom-nav { position:fixed; bottom:0; width:100%; background:white; display:flex; justify-content:space-around; padding:15px; box-shadow:0 -2px 10px rgba(0,0,0,0.05); z-index:1000; border-radius:20px 20px 0 0; }
+        .bottom-nav a { text-decoration:none; color:#777; font-size:14px; }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <a href="index.html" class="logo">
+            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f" alt="Logo">
+            <span>Kashbelle</span>
+        </a>
+    </div>
+
+    <div class="profile-container">
+        <div class="profile-header">
+            <div class="avatar" id="avatarLetter">U</div>
+            <h2 id="welcomeName">Welcome Designer! ✨</h2>
+        </div>
+
+        <div class="info-box">
+            <div class="info-group">
+                <label>Full Name</label>
+                <input type="text" id="profName" value="Guest User">
+            </div>
+            <div class="info-group">
+                <label>Email Address</label>
+                <input type="email" id="profEmail" value="user@kashbelle.com">
+            </div>
+            <div class="info-group">
+                <label>Phone Number</label>
+                <input type="tel" id="profPhone" value="+91 XXXXX XXXXX">
+            </div>
+        </div>
+
+        <button class="save-btn" onclick="saveProfile()">Save Changes</button>
+        <button class="logout-btn" onclick="logout()">Logout Account</button>
+    </div>
+
+    <div class="bottom-nav">
+        <a href="index.html">Home</a>
+        <a href="products.html">Shop</a>
+        <a href="cart.html">Cart</a>
+        <a href="orders.html">Orders</a>
+    </div>
+
+    <script>
+        // Load stored user information
+        function loadProfile() {
+            let storedName = localStorage.getItem("userName");
+            if(storedName) {
+                document.getElementById("profName").value = storedName;
+                document.getElementById("welcomeName").innerHTML = "Hello, " + storedName + " ✨";
+                document.getElementById("avatarLetter").innerHTML = storedName.charAt(0).toUpperCase();
+            }
+        }
+
+        function saveProfile() {
+            let newName = document.getElementById("profName").value.trim();
+            if(!newName) {
+                alert("Name khali nahi ho sakta!");
+                return;
+            }
+            localStorage.setItem("userName", newName);
+            alert("Profile successfully update ho gayi! 🎉");
+            loadProfile();
+        }
+
+        function logout() {
+            localStorage.removeItem("userName");
+            alert("Aap safely logged out ho gaye hain. Bye! 👋");
+            window.location.href = "Login.html";
+        }
+
+        loadProfile();
+    </script>
+</body>
+</html>

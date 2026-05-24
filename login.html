@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Kashbelle</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Poppins',sans-serif; background:#f8f5f1; display:flex; justify-content:center; align-items:center; min-height:100vh; padding:20px; }
+        .login-box { background:white; padding:35px 25px; border-radius:30px; width:100%; max-width:420px; box-shadow:0 4px 18px rgba(0,0,0,0.06); }
+        .logo { display:flex; justify-content:center; align-items:center; gap:10px; margin-bottom:20px; }
+        .logo img { width:50px; height:50px; border-radius:50%; object-fit:cover; }
+        .logo span { font-size:26px; font-weight:600; color:#c7a27c; }
+        h1 { text-align:center; margin-bottom:10px; font-size:24px; }
+        .subtitle { text-align:center; color:#777; margin-bottom:25px; font-size:14px; }
+        input { width:100%; padding:15px; margin-bottom:15px; border:none; border-radius:16px; background:#f4f1ed; font-size:14px; outline:none; font-family:inherit; }
+        .login-btn { width:100%; padding:15px; border:none; border-radius:35px; background:black; color:white; font-size:15px; font-weight:600; cursor:pointer; margin-top:5px; }
+        .extra-links { text-align:center; margin-top:20px; font-size:14px; }
+        .extra-links a { text-decoration:none; color:#222; font-weight:600; }
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <div class="logo">
+            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f" alt="Logo">
+            <span>Kashbelle</span>
+        </div>
+        <h1>Welcome Back ✨</h1>
+        <p class="subtitle">Login to explore aesthetic outfits 💖</p>
+        
+        <input type="email" id="email" placeholder="Email Address">
+        <input type="password" id="password" placeholder="Password">
+        
+        <button class="login-btn" onclick="loginUser()">Login</button>
+        
+        <div class="extra-links">
+            <a href="register.html">Create New Account</a>
+        </div>
+    </div>
+
+    <script>
+        function loginUser() {
+            let email = document.getElementById("email").value.trim();
+            let password = document.getElementById("password").value.trim();
+
+            if(!email || !password) {
+                alert("Please fill all fields 💖");
+                return;
+            }
+            
+            // Set dummy user token based on email prefix
+            localStorage.setItem("userName", email.split('@')[0]);
+            alert("Logged in successfully! Welcome back ✨");
+            window.location.href = "index.html";
+        }
+    </script>
+</body>
+</html>

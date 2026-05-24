@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register - Kashbelle</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Poppins',sans-serif; background:#f8f5f1; display:flex; justify-content:center; align-items:center; min-height:100vh; padding:20px; }
+        
+        .register-box { background:white; padding:35px 25px; border-radius:30px; width:100%; max-width:420px; box-shadow:0 4px 18px rgba(0,0,0,0.06); }
+        .logo { display:flex; justify-content:center; align-items:center; gap:10px; margin-bottom:20px; text-decoration:none; }
+        .logo span { font-size:26px; font-weight:600; color:#c7a27c; }
+        
+        h1 { text-align:center; font-size:24px; color:#222; margin-bottom:6px; font-weight:600; }
+        .subtitle { text-align:center; color:#777; margin-bottom:25px; font-size:13px; }
+        
+        input { width:100%; padding:15px; margin-bottom:15px; border:none; border-radius:16px; background:#f4f1ed; font-size:14px; outline:none; font-family:inherit; }
+        
+        .register-btn { width:100%; padding:15px; border:none; border-radius:35px; background:black; color:white; font-size:15px; font-weight:600; cursor:pointer; margin-top:5px; }
+        .extra-links { text-align:center; margin-top:20px; font-size:14px; }
+        .extra-links a { text-decoration:none; color:#222; font-weight:600; }
+    </style>
+</head>
+<body>
+
+    <div class="register-box">
+        <a href="index.html" class="logo">
+            <span>Kashbelle</span>
+        </a>
+        <h1>Create Account ✨</h1>
+        <p class="subtitle">Join Kashbelle and explore premium aesthetic fashion 💖</p>
+        
+        <input type="text" id="regName" placeholder="Full Name">
+        <input type="email" id="regEmail" placeholder="Email Address">
+        <input type="password" id="regPass" placeholder="Password">
+        
+        <button class="register-btn" onclick="handleRegister()">Create Account</button>
+        
+        <div class="extra-links">
+            <a href="Login.html">Already have an account? Login</a>
+        </div>
+    </div>
+
+    <script>
+        function handleRegister() {
+            let name = document.getElementById("regName").value.trim();
+            let email = document.getElementById("regEmail").value.trim();
+            let pass = document.getElementById("regPass").value.trim();
+            
+            if(!name || !email || !pass) {
+                alert("Please fill all the details! 💖");
+                return;
+            }
+            
+            // Local Storage syncing
+            localStorage.setItem("userName", name);
+            localStorage.setItem("userEmail", email);
+            
+            alert("Account created successfully! Welcome " + name + " 🎉");
+            window.location.href = "index.html";
+        }
+    </script>
+</body>
+</html>

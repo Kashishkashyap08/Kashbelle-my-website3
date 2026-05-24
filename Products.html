@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shop - Kashbelle</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Poppins',sans-serif; background:#f8f5f1; padding-bottom:90px; }
+        
+        /* NAVBAR */
+        .navbar { position:sticky; top:0; background:white; padding:12px 15px; display:flex; justify-content:space-between; align-items:center; box-shadow:0 2px 10px rgba(0,0,0,0.05); z-index:1000; }
+        .logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
+        .logo img { width:50px; height:50px; border-radius:50%; object-fit:cover; }
+        .logo span { font-size:22px; font-weight:600; color:#c7a27c; }
+        
+        .title { padding:20px; font-size:28px; font-weight:600; color:#222; }
+        
+        /* PRODUCT GRID */
+        .products-grid { display:grid; grid-template-columns:1fr 1fr; gap:15px; padding:15px; }
+        .card { background:white; border-radius:22px; overflow:hidden; box-shadow:0 4px 12px rgba(0,0,0,0.05); position:relative; display:flex; flex-direction:column; }
+        .card img { width:100%; height:220px; object-fit:cover; cursor:pointer; }
+        
+        .wishlist-icon { position:absolute; top:12px; right:12px; background:white; width:35px; height:35px; border-radius:50%; display:flex; justify-content:center; align-items:center; font-size:16px; cursor:pointer; box-shadow:0 2px 5px rgba(0,0,0,0.1); }
+        
+        .info { padding:12px; flex-grow:1; display:flex; flex-direction:column; justify-content:space-between; }
+        .info h3 { font-size:14px; color:#333; font-weight:500; margin-bottom:4px; }
+        .price { font-weight:600; color:black; font-size:16px; margin-bottom:8px; }
+        
+        .buttons { display:flex; gap:8px; margin-top:auto; }
+        .cart-btn { flex:1; padding:10px; border:none; border-radius:20px; background:black; color:white; font-size:11px; font-weight:600; cursor:pointer; }
+        .buy-btn { flex:1; padding:10px; border:none; border-radius:20px; background:#e7d8c9; color:#222; font-size:11px; font-weight:600; cursor:pointer; }
+        
+        /* BOTTOM NAV */
+        .bottom-nav { position:fixed; bottom:0; width:100%; background:white; display:flex; justify-content:space-around; padding:15px; box-shadow:0 -2px 10px rgba(0,0,0,0.05); z-index:1000; border-radius:20px 20px 0 0; }
+        .bottom-nav a { text-decoration:none; color:#777; font-size:14px; font-weight:500; }
+        .bottom-nav a.active { color:#c7a27c; font-weight:700; }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <a href="index.html" class="logo">
+            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f" alt="Logo">
+            <span>Kashbelle</span>
+        </a>
+    </div>
+
+    <div class="title">Explore Collection ✨</div>
+
+    <div class="products-grid">
+        <div class="card">
+            <div class="wishlist-icon" onclick="toggleWishlist(this, 'Luxury Beige Dress', 1299)">🤍</div>
+            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f" onclick="openProduct()" alt="Product">
+            <div class="info">
+                <h3>Luxury Beige Dress</h3>
+                <p class="price">₹1299</p>
+                <div class="buttons">
+                    <button class="cart-btn" onclick="addToCart('Luxury Beige Dress', 1299)">Add To Cart</button>
+                    <button class="buy-btn" onclick="buyNow()">Buy Now</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="wishlist-icon" onclick="toggleWishlist(this, 'Korean Soft Top', 899)">🤍</div>
+            <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b" onclick="openProduct()" alt="Product">
+            <div class="info">
+                <h3>Korean Soft Top</h3>
+                <p class="price">₹899</p>
+                <div class="buttons">
+                    <button class="cart-btn" onclick="addToCart('Korean Soft Top', 899)">Add To Cart</button>
+                    <button class="buy-btn" onclick="buyNow()">Buy Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-nav">
+        <a href="index.html">Home</a>
+        <a href="products.html" class="active">Shop</a>
+        <a href="cart.html">Cart</a>
+        <a href="orders.html">Orders</a>
+    </div>
+
+    <script>
+        function openProduct() {
+            window.location.href = "product.html";
+        }
+
+        function addToCart(name, price) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            cart.push({ name: name, price: price, qty: 1 });
+            localStorage.setItem("cart", JSON.stringify(cart));
+            alert(name + " added to cart! 🛒");
+        }
+
+        function buyNow() {
+            window.location.href = "checkout.html";
+        }
+
+        function toggleWishlist(btn, name, price) {
+            let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+            if(btn.innerHTML === "🤍") {
+                btn.innerHTML = "❤️";
+                wishlist.push({ name, price });
+                alert("Added to Wishlist! 💖");
+            } else {
+                btn.innerHTML = "🤍";
+                wishlist = wishlist.filter(item => item.name !== name);
+            }
+            localStorage.setItem("wishlist", JSON.stringify(wishlist));
+        }
+    </script>
+</body>
+</html>
